@@ -1,12 +1,12 @@
 package com.ecommerce.store.exceptions;
 
-public class UserNotFoundException extends RuntimeException {
+public class NotFoundException extends RuntimeException {
 
 	
 	private static final long serialVersionUID = 1L;
 
 	
-	public UserNotFoundException (String mensage) {
+	public NotFoundException (String mensage) {
 		super(mensage);
 	}
 

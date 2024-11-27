@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ecommerce.store.exceptions.UserNotFoundException;
+import com.ecommerce.store.exceptions.NotFoundException;
 import com.ecommerce.store.model.User;
 import com.ecommerce.store.repository.UserRepository;
 
@@ -28,7 +28,7 @@ public class UserService {
    
     public User getUserById(Long id) {
         return userRepository.findById(id)
-        		.orElseThrow(() -> new UserNotFoundException("User with ID " + id + " not found"));
+        		.orElseThrow(() -> new NotFoundException("User with ID " + id + " not found"));
     }
 
  
@@ -39,7 +39,7 @@ public class UserService {
         existingUser.setPassword(updatedUser.getPassword());  
         existingUser.setEmail(updatedUser.getEmail());   
         
-        return userRepository.save(updatedUser);
+        return userRepository.save(existingUser);
     }
 
    

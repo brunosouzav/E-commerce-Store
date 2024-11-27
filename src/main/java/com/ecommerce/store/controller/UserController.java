@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ecommerce.store.model.User;
 import com.ecommerce.store.service.UserService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -27,7 +29,7 @@ public class UserController {
 		private UserService userService;
 	
 		@PostMapping
-	    public ResponseEntity<User> createUser(@RequestBody User user) {
+	    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
 	        User createdUser = userService.createUser(user);
 	        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
 	    }
@@ -48,7 +50,7 @@ public class UserController {
 
 	    
 	    @PutMapping("/{id}")
-	    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+	    public ResponseEntity<User> updateUser(@PathVariable Long id,  @Valid @RequestBody User updatedUser) {
 	        User updated = userService.updateUser(id, updatedUser);
 	        return new ResponseEntity<>(updated, HttpStatus.OK);
 	    }
