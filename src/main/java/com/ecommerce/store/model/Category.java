@@ -3,7 +3,7 @@ package com.ecommerce.store.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,35 +19,24 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "products")
-public class Product {
+@Table(name = "categories")
+public class Category {
 
-    @Id
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
-  
-  
-    private String name;
-
-  
-    private String description;
-
-   
-    private Double price;
-  
-    @ManyToMany
-    @JsonManagedReference
-    private List<Category> categories =  new ArrayList<>();
-
-	public Product(Long id, String name, String description, Double price) {
+	
+	private String name;
+	
+	@ManyToMany(mappedBy = "categories")
+	@JsonBackReference
+	private List<Product> products = new ArrayList<>();
+	
+	public Category(Long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.description = description;
-		this.price = price;
-		
 	}
 	
-
-
+	
 }

@@ -1,13 +1,12 @@
 package com.ecommerce.store.service;
 
+import java.util.ArrayList;
 import java.util.List;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.store.exceptions.NotFoundException;
-
 import com.ecommerce.store.model.Product;
 import com.ecommerce.store.repository.ProductRepository;
 
@@ -24,7 +23,8 @@ public class ProductService {
 
    
     public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    	List<Product> products = productRepository.findAll();
+    	return new ArrayList<>(products);
     }
 
   
