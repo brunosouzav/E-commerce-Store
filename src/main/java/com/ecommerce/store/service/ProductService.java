@@ -1,6 +1,5 @@
 package com.ecommerce.store.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +22,7 @@ public class ProductService {
 
    
     public List<Product> getAllProducts() {
-    	List<Product> products = productRepository.findAll();
-    	return new ArrayList<>(products);
+    	return  productRepository.findAll();
     }
 
   
