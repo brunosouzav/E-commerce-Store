@@ -10,6 +10,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,6 +36,9 @@ public class Product {
    
     private Double price;
   
+    @OneToMany(mappedBy = "id.product")
+	private List<OrderItem> items = new ArrayList<>();
+    
     @ManyToMany
     @JsonManagedReference
     private List<Category> categories =  new ArrayList<>();
